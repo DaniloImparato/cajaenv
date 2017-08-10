@@ -1,0 +1,225 @@
+.welcome .mdl-card__supporting-text {
+    font-size: 1.25em;
+    line-height: 1.25em;
+    font-weight: 300;
+}
+.modal-dialog {
+    margin-top: 80px !important;
+}
+#caja-view highlight *, #caja-view *.highlight  {
+    fill: #F00;
+}
+.sex-checkbox {
+    display: flex;
+}
+.mdl-card--expand {
+    -webkit-flex-grow: 0; 
+    -ms-flex-positive: 0;
+        flex-grow: 0; 
+}
+.mdl-card__supporting-text {
+    -webkit-flex-grow: 1; 
+    -ms-flex-positive: 1;
+        flex-grow: 1; 
+}
+.mdl-textfield__label {
+    margin: 0px;
+}
+label.mdl-switch{
+    text-align: left;
+}
+label.mdl-switch + label.mdl-switch{
+    margin-top: 5px;
+}
+
+/* Style Select Field */
+select {
+  font-family: inherit;
+  background-color: transparent;
+  width: 100%;
+  padding: 6px;
+  font-size: 16px;
+  color: rgb(117, 117, 117);
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0, 0.12);
+}
+
+/* Remove focus */
+select:focus {
+  outline: none;
+}
+
+/* Hide label */
+.mdl-selectfield label {
+  display: none;
+}
+
+/* Use custom arrow */
+.mdl-selectfield select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+.mdl-selectfield select option {
+}
+.mdl-selectfield {
+  font-family: 'Roboto','Helvetica','Arial',sans-serif;
+  position: relative;
+  color: rgb(117, 117, 117);
+}
+.mdl-selectfield:after {
+  position: absolute;
+  top: 0.75em;
+  right: 0.5em;
+  /* Styling the down arrow */
+  width: 0;
+  height: 0;
+  padding: 0;
+  content: '';
+  border-left: .25em solid transparent;
+  border-right: .25em solid transparent;
+  border-top: 0.375em solid rgba(0,0,0, 0.12);
+  pointer-events: none;
+}
+
+.mdl-selectfield {
+    text-align: left;
+}
+.mdl-selectfield label {
+    display: block;
+    color: rgba(0,0,0,.26);
+    font-weight: bold;
+    font-size: 16px;
+}
+/*
+.demo-updates .mdl-card__title-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+}
+*/
+.mdl-card__title-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+}
+.mdl-card__title-text .material-icons {
+    font-size: 1.25em;
+    margin-right: 8px;
+}
+.mdl-layout__drawer {
+    z-index: 5;
+    background: #fff;
+    width: 200px;
+}
+.mdl-navigation {
+    margin-top: 64px;
+}
+.mdl-layout--fixed-drawer.is-upgraded:not(.is-small-screen)>.mdl-layout__header {
+    margin-left: 0px;
+    width: 100%;
+}
+.mdl-layout--fixed-drawer.is-upgraded:not(.is-small-screen)>.mdl-layout__header>.mdl-layout__drawer-button {
+    visibility: hidden;
+}
+.mdl-layout__content {
+    background: #CFD8DC;
+    z-index: 0;
+}
+.mdl-layout__header {
+    background-color: #212121;
+    z-index: 6;
+}
+.mdl-layout--fixed-drawer>.mdl-layout__content {
+    margin-left: 200px;
+}
+.demo-cards.f {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+.demo-separator.mdl-cell--1-col {
+    height: 16px;
+}
+.mdl-navigation__link>.material-icons {
+    margin-right: 16px;
+}
+.mdl-navigation__link {
+    font-weight: 600;
+}
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
+    padding: 16px 20px;
+}
+.mdl-mini-footer {
+    padding: 0px;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+
+    /**
+    margin-left: 200px;
+    width: calc(100% - 200px);
+
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    /**/
+}
+.search h5 {
+    font-size: 1.25em;
+}
+.search>.mdl-card__actions.mdl-card--border {
+    text-align: right;
+}
+.mdl-layout__content .mdl-grid {
+    /**
+    max-width: 1080px;
+    justify-content: center;
+    align-items: flex-start;
+    /**/
+}
+.search form .mdl-textfield {
+    width: 100%;
+}
+.welcome .mdl-card__title {
+    background-size: cover;
+    min-height: 360px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.75)), url('../images/marmo.jpg');
+    background-repeat: no-repeat;
+    font-weight: 800;
+}
+.welcome h2 {
+    text-shadow: 3px 3px 3px #222;
+    font-weight: 500;
+    font-size: 2.25em;
+}
+.welcome .mdl-card__supporting-text {
+    width: auto;
+    text-align: justify;
+    text-justify: inter-word;
+}
+.mdl-card__supporting-text {
+    width: 100%;
+}
+.body-view .mdl-card__title {
+    align-content: center;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+.body-view img {
+    max-height: 150px;
+}
+@media screen and (min-width: 1025px) {
+    .mdl-layout--fixed-drawer>.mdl-layout__header .mdl-layout__header-row {
+        padding-left: 20px;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .mdl-layout--fixed-drawer>.mdl-layout__content {
+        margin-left: 0;
+    }
+    .mdl-mini-footer {
+        margin-left: 0px;
+        width: 100%;
+    }
+}

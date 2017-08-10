@@ -1,0 +1,107 @@
+###################
+# Tissue Norm
+###################
+CREATE TABLE Tissue
+(
+TissueID INT NOT NULL AUTO_INCREMENT
+ ,TissueName varchar(200)
+ ,PRIMARY KEY (TissueID)
+) ENGINE=InnoDB;
+
+INSERT INTO Tissue (TissueName)
+SELECT DISTINCT tissue
+FROM exp
+WHERE tissue NOT IN (SELECT DISTINCT TissueName FROM Tissue);
+
+###################
+# Gene Norm
+###################
+CREATE TABLE Gene
+(
+GeneID INT NOT NULL AUTO_INCREMENT
+ ,GeneSymbol varchar(200)
+ ,Type varchar(200)
+ ,ProteinCoding TINYINT(1)
+ ,Annotation TINYTEXT
+ ,PRIMARY KEY (GeneId)
+) ENGINE=InnoDB;
+
+INSERT INTO Gene (GeneSymbol,Type,ProteinCoding,Annotation)
+SELECT DISTINCT gene_id,'',CASE WHEN protein='protein_coding' THEN 1 ELSE 0 END,'' FROM exp
+WHERE gene_id NOT IN (SELECT DISTINCT GeneSymbol FROM Gene);
+
+###################
+# Expression Norm
+###################
+CREATE TABLE Expression
+(
+ExpressionID INT NOT NULL AUTO_INCREMENT
+, GeneID INT NOT NULL
+, TissueID INT NOT NULL
+, Fpkm FLOAT
+, Project varchar(100)
+, Gender enum('m','f')
+,PRIMARY KEY (ExpressionID)
+,FOREIGN KEY(GeneID) REFERENCES Gene(GeneID)
+,FOREIGN KEY(TissueID) REFERENCES Tissue(TissueID)
+) ENGINE=InnoDB;
+
+INSERT INTO Expression (GeneID,TissueID,Fpkm,Project,Gender)
+SELECT g.GeneID, t.TissueID, e.fpkm, e.project, CASE WHEN e.sex='male' THEN 'm' ELSE 'f' END
+FROM exp e
+INNER JOIN Gene g ON e.gene_id=g.GeneSymbol
+INNER JOIN Tissue t ON e.tissue=t.TissueName;
+
+###################
+# GeneType Norm
+###################
+CREATE TABLE GeneType
+(
+GeneTypeID INT NOT NULL AUTO_INCREMENT
+, Description varchar(100)
+,PRIMARY KEY (GeneTypeID)
+) ENGINE=InnoDB;
+
+INSERT INTO GeneType (Description)
+SELECT DISTINCT Type
+FROM Gene
+WHERE Type NOT IN (SELECT DISTINCT Description FROM GeneType);
+
+UPDATE Gene SET Type = '1';
+
+ALTER TABLE Gene CHANGE COLUMN Type TypeID INT NOT NULL;
+
+ALTER TABLE Gene ADD FOREIGN KEY (TypeID) REFERENCES GeneType(GeneTypeID);
+
+INSERT INTO GeneType (Description) VALUES ('Neural gene');
+
+UPDATE Gene SET TypeID = 2 WHERE GeneSymbol IN ('NAT16','CCL8','NHLH1','NPS','CD70','ODF1','CD96','OLAH','OR10A7','OR10H5','OR10W1','OR13C3','OR4F15','OR4K2','OR51B5','OR5B3','OR5M11','OR9K2','OXT','PGLYRP3','CELA1','AADACL3','ASCL5','PROP1','PSMA8','PSORS1C2','PTH2','RAX','CLEC12B','CLEC1B','RBM46','CLRN1','CLRN3','CNR2','SATL1','SCGB2A1','SCRT2','ADGRE1','CPA4','CREB3L3','SMCP','CRYBA4','CST11','BARHL2','SPINK6','SPO11','CTLA4','CYM','CYP26C1','CYP4Z1','TFAP2D','BEND2','DCAF4L2','5_8S_rRNA','TMEM31','TPSD1','DEFB118','DEFB119','DEFB132','TSGA10IP','DGKK','BPIFA1','DHRS2','UBL4B','BTG4','ZG16B','DRD3','DRGX','DSG1','DSG4','DYRK4','ERICH4','ERICH6B','C5orf52','FAM170B','FAM24A','FAM71C','FAM92B','CABS1','ALAS2','FBXO47','FCRL4','CAJA-T2R10','FGF21','FGF3','FOXB1','FOXL2NB','FRMD7','CASC10','FSHB','GABRQ','GALP','GALR1','GCNT7','ALLC','GHRH','GLYATL1','GNAT3','CCDC70','AMELX','GP9','GPR101','GPR119','GPR139','GPR31','GPR32','GPR50','GPR55','GPR78','GRK1','GSG1L2','GSX1','GUCY2F','GVQW1','HCRT','HELZ2','ANGPT4','ACER1','HHLA1','HLA-DOA','HTR3E','HYAL4','IFNL1','IGSF5','IL21','INS-IGF2','INSL6','ANKRD60','IRX1','KAAG1','KCNJ1','KCNK15','CIB4','CLDN34','KLHDC7B','KPNA7','KRT24','KRT25','KRT26','KRT35','KRTAP10-4','LHX5','LIPF','LRRC72','LRTM1','MAGEA10','APOBEC4','MALRD1','MAPK15','CPO','MGAM2','MGRG1','ARGFX','MLN','MNX1','MOS','CXorf66','MRGPRG','MROH2A','CYLC1','MS4A15','MS4A3','MS4A8','DCD','NAALADL1','NEUROG1','NEUROG3','NKX2-3','NLRP6','NOX3','NPBWR2','NPPA','NPS','NPVF','NR5A1','NTN5','ODF4','DNAJC15','OLR45','DNAJC5G','OR10G3','OR10K2','OR1N1','OR2W1','OR4K2','OR4N2','OR4Q3','OR51B5','OR52E2','OR56A5','OR5B12','OR6S1','OR6X1','OR8B8','OR8S1','OR9G4','OTX2','P2RY8','DPPA2','PASD1','PDE6C','ASB17','PIH1D3','PLA2G4E','PLAC8L1','POU1F1','PQLC2L','PRDM14','PRLH','PRSS55','PSKH2','PTH','PTH2','PTPN20','PYDC1','RBM46','RGS13','RHOH','RLN3','SAMD3','SAMD7','SATL1','SCARNA17','SCGB1A1','SEC14L3','SERPINA6','SERPINB7','FGF3','FGF8','SH2D1B','SKOR2','SLC13A1','FOXI3','SLC28A2','SLC30A8','SLC4A1','SLC5A12','SLC6A18','SMR3A','SNORA12','SNORA27','SNORA29','SNORA40','SNORA41','SNORA49','SNORA58','SNORA72','SNORD89','SOX3','SPO11','SPOCD1','T','TAS2R20','TAS2R5','GNRH2','TBPL2','GPHB5','TEX36','TGM5','TLX1','GPX6','TMEM156','TMEM30C','TMEM52B','GUCA1B','TNFSF18','TOPAZ1','TPRG1','TRAT1','TRHR','TRIM42','TRPC2','HELT','TVP23C-CDRT4','TYR','BSND','U5','BSX','UCN2','UMOD','UNCX','URAD','BTG4','UTS2','VN1R2','C10ORF53','WFDC10A','WFDC12','C10orf67','WNT3A','XAGE2','C11orf16','C11orf94','ZNF100','C12orf60','ZNF716','ZNF80','ZNRF4','ZP2','ZSWIM2','IQCF3','IRBP','C17orf105','C1orf146','KIAA1024L','LCN9','C2orf61','C3orf30','LIPK','C5orf52','C6orf10','C6orf58','C7orf61','C7orf72','MAGEA10','C9orf135','ACSM4','ANTXRL','CAJA-T2R16','ACTL8','CASC10','MGRG1','CCDC169','CCDC172','CCDC38','MUC7');
+
+############
+
+ALTER TABLE `Expression` ADD INDEX `idx_GeneID_TissueID_Gender` (`GeneID`,`TissueID`,`Gender`);
+ALTER TABLE `Expression` ADD INDEX `idx_ExpressionID_GeneID_TissueID_Gender` (`ExpressionID`,`GeneID`,`TissueID`,`Gender`);
+ALTER TABLE `Gene` ADD INDEX `idx_ProteinCoding` (`ProteinCoding`);
+ALTER TABLE `Expression` ADD INDEX `idx_Project` (`Project`);
+############
+
+SELECT
+	g.GeneSymbol,
+	SUM(e.Fpkm) SumFpkm,
+	t.TissueName
+FROM Expression e
+INNER JOIN Gene g ON e.GeneID=g.GeneID
+INNER JOIN Tissue t ON e.TissueID=t.TissueID
+WHERE g.ProteinCoding=1 GROUP BY e.GeneID,e.TissueID ORDER BY Fpkm DESC LIMIT 25;
+#############
+
+SELECT
+	g.GeneSymbol,
+	g.Type,
+	SUM(e.Fpkm) SumFpkm,
+	t.TissueName,
+	e.Gender
+FROM Expression e
+INNER JOIN Gene g ON e.GeneID=g.GeneID
+INNER JOIN Tissue t ON e.TissueID=t.TissueID
+WHERE g.ProteinCoding=1 GROUP BY e.GeneID,e.TissueID,e.Gender HAVING SUM(e.Fpkm) >= 15000 ORDER BY SumFpkm DESC;
