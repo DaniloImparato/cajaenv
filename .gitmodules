@@ -1,0 +1,6 @@
+[submodule "clustergrammer"]
+	path = clustergrammer
+	url = https://github.com/daniloimparato/clustergrammer
+[submodule "chromosummary"]
+	path = chromosummary
+	url = https://github.com/daniloimparato/chromosummary

@@ -9,9 +9,9 @@
     <link rel="shortcut icon" href="favicon.ico">
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="../clustergrammer/lib/css/custom.css" rel="stylesheet">
-    <link href="../clustergrammer/lib/css/jquery-ui.css" rel="stylesheet">
-    <link rel="stylesheet" href="../clustergrammer/lib/css/font-awesome.min.css">
+    <link href="clustergrammer/lib/css/custom.css" rel="stylesheet">
+    <link href="clustergrammer/lib/css/jquery-ui.css" rel="stylesheet">
+    <link rel="stylesheet" href="clustergrammer/lib/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="css/material.blue_grey-blue.min.css" />
@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.tagsinput.min.css" />
 
     <?php
-        if($chromosummary) echo '<link rel="stylesheet" href="../chromosummary/style.css">
+        if($chromosummary) echo '<link rel="stylesheet" href="chromosummary/style.css">
         <style>
             svg {
                 border: none;
@@ -33,7 +33,7 @@
         </style>';
     ?>
 
-    <script src="../clustergrammer/lib/js/jquery-1.11.2.min.js"></script>
+    <script src="clustergrammer/lib/js/jquery-1.11.2.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
 
     <script defer src="js/material.min.js"></script>
@@ -134,9 +134,9 @@
         <script src="js/etc.js"></script>';
     else if($chromosummary) echo '
         <script src="https://d3js.org/d3.v4.min.js"></script>
-        <script src="../chromosummary/script.js"></script>
+        <script src="chromosummary/script.js"></script>
         <script>
-            d3.tsv("../chromosummary/calli_chromosomes.tsv",function(err,chromosomesData){
+            d3.tsv("chromosummary/calli_chromosomes.tsv",function(err,chromosomesData){
                 if (err) throw error;
                 chromosomesData.map(function(x){
                     x.size = parseInt(x.size);
@@ -146,7 +146,7 @@
             });
 
             function getPhenotype(chromosomesData){
-                d3.tsv("../chromosummary/calli_gwas.tsv",function(err,phenotypeData){
+                d3.tsv("chromosummary/calli_gwas.tsv",function(err,phenotypeData){
                     phenotypeData.map(function(phenotype){
                         phenotype.position = parseInt(phenotype.position);
                         chromosomesData.filter(function(chromosome){
