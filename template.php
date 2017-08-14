@@ -109,17 +109,17 @@
 
   <?php
     if($cluster) echo '
-        <script src="../clustergrammer/lib/js/d3.js"></script>
-        <script src="../clustergrammer/lib/js/underscore-min.js"></script>
-        <script src="../clustergrammer/lib/js/bootstrap.min.js"></script>
+        <script src="clustergrammer/lib/js/d3.js"></script>
+        <script src="clustergrammer/lib/js/underscore-min.js"></script>
+        <script src="clustergrammer/lib/js/bootstrap.min.js"></script>
 
         <!-- Clustergrammer JS -->
-        <script src="../clustergrammer/clustergrammer.js"></script>
+        <script src="clustergrammer/clustergrammer.js"></script>
 
         <!-- optional modules
-        <script src="../clustergrammer/js/Enrichr_functions.js"></script>
-        <script src="../clustergrammer/js/gene_info.js"></script>
-        <script src="../clustergrammer/js/send_to_Enrichr.js"></script>
+        <script src="clustergrammer/js/Enrichr_functions.js"></script>
+        <script src="clustergrammer/js/gene_info.js"></script>
+        <script src="clustergrammer/js/send_to_Enrichr.js"></script>
         -->
         
         <!-- optional modules -->
