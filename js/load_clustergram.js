@@ -86,7 +86,7 @@ function make_clust(entry){
         root: '#container-id-1',
         'network_data': network_data,
         'about':about_string,
-        'row_tip_callback':hzome.gene_info,
+        // 'row_tip_callback':hzome.gene_info,
         'col_tip_callback':test_col_callback,
         'tile_tip_callback':test_tile_callback,
         'dendro_callback':dendro_callback,

@@ -45,6 +45,10 @@ function ini_hzome(root_id){
 
   function set_tooltip(data, root_tip, gene_symbol){
 
+    console.log(data);
+    console.log(root_tip);
+    console.log(gene_symbol);
+
     if (data.name != undefined){
 
       d3.selectAll(root_tip + '_row_tip')
