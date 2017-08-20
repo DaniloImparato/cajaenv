@@ -3,6 +3,8 @@ error
 error-output.txt
 error/error-output.txt
 
+splicing/
+
 # Compiled source #
 ###################
 *.com
