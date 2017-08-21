@@ -223,3 +223,12 @@ select:focus {
         width: 100%;
     }
 }
+
+.gene_text label {
+    display: block;
+    font-weight: normal;
+}
+
+.gene_text img {
+    width: 100%;
+}

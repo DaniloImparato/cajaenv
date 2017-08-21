@@ -4,6 +4,7 @@ $url = array(
     'home' => 'index.php',
     'expression' => 'expression.php',
     'genome' => 'genome.php',
+    'splicing' => 'splicing',
     'network' => 'network.php',
     'help' => 'help.php'
 );

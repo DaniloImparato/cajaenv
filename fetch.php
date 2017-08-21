@@ -175,6 +175,20 @@ switch($_GET['type']){
             //echo "command returned $return_value\n";
         }
     break;
+
+    case 'ppi':
+        $genes = (isset($_GET['genes']) && !empty($_GET['genes']) ? str_replace(',','%0D',preg_replace("/[^a-zA-Z0-9,_]/","",$_GET['genes'])) : '');
+
+        $curl = curl_init();
+    
+        curl_setopt($curl,CURLOPT_URL,"http://string-db.org/api/tsv/resolveList?identifiers=".$genes."&species=9483");
+        curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
+    
+        $output = curl_exec($curl);
+    
+        curl_close($ch);
+        die(var_dump($output));
+    break;
 }
 
 $data->free();

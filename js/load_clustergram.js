@@ -107,6 +107,137 @@ function make_clust(entry){
 
       check_setup_enrichr(cgm);
 
+      //////////////////
+      // String
+      //////////////////
+
+      var visible_genes = cgm.params.network_data.row_nodes_names;
+
+      var low_opacity = 0.7;
+      var high_opacity = 1.0;
+      var icon_size = 42;
+      var d3_tip_custom = cgm.d3_tip_custom();
+
+      var enrichr_description = 'Lalala';
+      // d3-tooltip
+      var enr_tip = d3_tip_custom()
+        .attr('class', function(){
+          var root_tip_selector = cgm.params.viz.root_tips.replace('.','');
+          var class_string = root_tip_selector + '_string_tip d3-tip';
+          return class_string;
+        })
+        .direction('se')
+        .offset([-10,-5])
+        .html(function(d){
+          return enrichr_description;
+        });
+
+      var enr_logo = d3.select(cgm.params.root+' .viz_svg').append("svg:image")
+      .attr('x', 100)
+      .attr('y', 2)
+      .attr('width', icon_size)
+      .attr('height', icon_size)
+      .attr("xlink:href", "https://amp.pharm.mssm.edu/Enrichr/images/enrichr-icon.png")
+      .style('opacity', low_opacity)
+      .classed('string_logo', true)
+      .attr('id', 'a')
+      .on('click', function(){
+        $(cgm.params.root+' .string_info').modal('toggle');
+
+        d3.tsv('fetch.php?type=ppi&genes='+visible_genes.join(','), function(err, data) {
+
+          data.pop();
+
+          d3.select(cgm.params.root+' .string_info h4')
+            .html('Please resolve the identifiers');
+          
+          // d3.select(cgm.params.root+' .string_info p.gene_text')
+          //   .text(JSON.stringify(data));
+
+          $(cgm.params.root+' .string_info .gene_text').html('');
+
+          d3.select(cgm.params.root+' .string_info .gene_text')
+            .selectAll('label')
+            .data(data)
+            .enter()
+            .append("label")
+            .html(function(d, i){
+              var html = '';
+              if(data[i-1] !== undefined) {
+
+              var previous = data[i-1][Object.keys(data[i-1])[0]];
+              var current = data[i][Object.keys(data[i])[0]];
+
+                if(previous != current) {
+                  data[i].new = previous != current;
+                  html += '<h5>'+visible_genes[current]+'</h5><hr>';
+                }
+              } else {
+                html += '<h5>'+visible_genes[i]+'</h5><hr>';
+                data[i].new = previous != current;
+              }
+              return html+d.preferredName+' ';
+            })
+            .append('input')
+            .attr('type','radio')
+            .attr('checked', function(d, i){
+              if(d.new)
+                return 'checked';
+              else
+                return 'false';
+            })
+            .attr('name', function(d){
+              return visible_genes[d[Object.keys(d)[0]]];
+            })
+            .attr('value', function(d){
+              return d.stringId;
+            })
+            .html(function(d){
+              return d.preferredName;
+            });
+
+            d3.select(cgm.params.root+' .string_info .gene_text').append('hr');
+
+            d3.select(cgm.params.root+' .string_info .gene_text')
+              .append('button')
+              .attr('type','button')
+              .classed('btn',true)
+              .classed('btn-primary',true)
+              .html("Retrieve network")
+              .on('click', function(){
+
+                var arr = [];
+                $('.string_info input[type="radio"]:checked').each(function(){
+                  arr.push($(this).val());
+                });
+
+                var img_url = 'http://string-db.org/api/image/networkList?identifiers='+arr.join('%0D')+'&required_score=400&network_flavor=confidence';
+
+                //http://string-db.org/api/image/network?identifiers=4932.YML115C%0D4932.YJR075W&required_score=400&network_flavor=confidence
+                $('.string_info .gene_text').html('<a href="'+img_url+'" target="_blank"><img src="'+img_url+'"></img></a>');
+
+              });
+
+        });
+      })
+      .on('mouseover', function(){
+          // show tooltip
+          d3.selectAll(cgm.params.viz.root_tips + '_string_tip')
+            .style('opacity', 1)
+            .style('display', 'block');
+
+          enr_tip.show();
+      })
+      .on('mouseout', function(){
+        // hide tooltip
+        d3.selectAll( cgm.params.viz.root_tips + '_string_tip')
+          .style('opacity', 0)
+          .style('display', 'block');
+
+        enr_tip.hide();
+      })
+      .call(enr_tip);
+
       d3.select(cgm.params.root + ' .wait_message').remove();
 
     } else {

@@ -68,23 +68,23 @@
                     <div class="icon material-icons">home</div>
                     Home
                 </a>
-                <a class="d-layout__tab mdl-navigation__link" href="<?php echo $url["expression"] ?>">
-                    <div class="icon material-icons">trending_up</div>
-                    Expression
-                </a>
                 <a class="mdl-navigation__link" href="<?php echo $url["genome"] ?>">
                     <div class="icon material-icons">line_style</div>
                     Genome
                 </a>
-                <a class="mdl-navigation__link" href="<?php echo $url["network"] ?>">
-                    <div class="icon material-icons">device_hub</div>
-                    Network
+                <a class="d-layout__tab mdl-navigation__link" href="<?php echo $url["expression"] ?>">
+                    <div class="icon material-icons">trending_up</div>
+                    Expression
+                </a>
+                <a class="mdl-navigation__link" href="<?php echo $url["splicing"] ?>">
+                    <div class="icon material-icons">shuffle</div>
+                    Splicing
                 </a>
                 <a class="mdl-navigation__link" href="<?php echo $url["help"] ?>">
                     <div class="icon material-icons">help</div>
                     Help
                 </a>
-                <a class="mdl-navigation__link" href="#">
+                <a class="mdl-navigation__link" href="about.php">
                     <div class="icon material-icons">copyright</div>
                     About
                 </a>
