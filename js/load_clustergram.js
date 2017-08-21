@@ -118,7 +118,7 @@ function make_clust(entry){
       var icon_size = 42;
       var d3_tip_custom = cgm.d3_tip_custom();
 
-      var enrichr_description = 'Lalala';
+      var enrichr_description = 'STRING network';
       // d3-tooltip
       var enr_tip = d3_tip_custom()
         .attr('class', function(){
@@ -137,7 +137,7 @@ function make_clust(entry){
       .attr('y', 2)
       .attr('width', icon_size)
       .attr('height', icon_size)
-      .attr("xlink:href", "https://amp.pharm.mssm.edu/Enrichr/images/enrichr-icon.png")
+      .attr("xlink:href", "https://string-db.org/images/string_logo_2015_left.png")
       .style('opacity', low_opacity)
       .classed('string_logo', true)
       .attr('id', 'a')

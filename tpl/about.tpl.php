@@ -18,6 +18,10 @@
                 
                 <hr>
 
+                This research was supported by Amazonas State Research Support Foundation (FAPEAM), Federal University of Rio Grande do Norte (UFRN), Brain Institute, Bioinformatics Multidisciplinary Environment (BioME), NPAD/UFRN and Brazilian Council for Research and Technological Development (CNPq Proc. No. 30.6018/2013-6).
+
+                <hr>
+
                 <h3>References</h3>
 
                 Szklarczyk D, Morris JH, Cook H, Kuhn M, Wyder S, Simonovic M, Santos A, Doncheva NT, Roth A, Bork P, Jensen LJ, von Mering C. The STRING database in 2017: quality-controlled protein-protein association networks, made broadly accessible. Nucleic Acids Res. 2017 Jan; 45:D362-68
