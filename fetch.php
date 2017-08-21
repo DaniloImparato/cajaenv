@@ -186,7 +186,7 @@ switch($_GET['type']){
     
         $output = curl_exec($curl);
     
-        curl_close($ch);
+        curl_close($curl);
         die(var_dump($output));
     break;
 }
