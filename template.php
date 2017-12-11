@@ -147,13 +147,24 @@
 
             function getPhenotype(chromosomesData){
                 d3.tsv("chromosummary/calli_gwas.tsv",function(err,phenotypeData){
+
+                    var labels = [];
+
                     phenotypeData.map(function(phenotype){
+                        console.log(phenotype);
                         phenotype.position = parseInt(phenotype.position);
                         chromosomesData.filter(function(chromosome){
                             return chromosome.chrname==phenotype.chrname;
                         })[0].phenotype.push(phenotype);
+
+                        labels.push(phenotype.label);
                     })
-                    chromosummary(chromosomesData);
+
+                    labels = labels.filter(function(value, index, self) { 
+                        return self.indexOf(value) === index;
+                    });
+
+                    chromosummary({chromosomesData: chromosomesData, labels: labels});
                 });
             }
         </script>';
