@@ -146,7 +146,7 @@
             });
 
             function getPhenotype(chromosomesData){
-                d3.tsv("chromosummary/calli_gwas.tsv",function(err,phenotypeData){
+                d3.tsv("chromosummary/calli_gwas_traits.tsv",function(err,phenotypeData){
 
                     var labels = [];
 
