@@ -15,7 +15,7 @@
                         <div class="mdl-selectfield">
                             <label>Phenotype</label>
                             <select id="phenotype" class="browser-default" required>
-                                <option value="" selected>Any</option>
+                                <option value="" disabled selected>Choose phenotype</option>
                             </select>
                         </div>
                     </form>
