@@ -170,7 +170,7 @@ function make_clust(entry){
 
                 if(previous != current) {
                   data[i].new = previous != current;
-                  html += '<h5>'+visible_genes[current]+'</h5><hr>';
+                  html += '<h5>'+current+'</h5><hr>';
                 }
               } else {
                 html += '<h5>'+visible_genes[i]+'</h5><hr>';
